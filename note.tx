@@ -1,0 +1,129 @@
+npm i @bull-board/express @faker-js/faker @jest/types @sendgrid/mail @socket.io/redis-adapter axios bcryptjs bull bullmq bunyan canvas compression cloudinary cookie-session cors dotenv ejs express express-async-errors hpp helmet http-status-codes ip joi jsonwebtoken lodash moment mongoose nodemailer redis socket.io swagger-stats typescript typescript-transform-paths
+
+npm i --save-dev @types/bcryptjs @types/bull @types/bunyan @types/compression @types/cookie-session @types/cors
+npm i --save-dev @types/ejs @types/express @types/hpp @types/ip @types/jest @types/jsonwebtoken @types/lodash @types/nodemailer
+npm i --save-dev @types/redis-info @types/swagger-stats @typescript-eslint/eslint-plugin @typescript-eslint/parser
+npm i --save-dev eslint eslint-config-prettier jest prettier ts-jest ts-node tsc-alias tsconfig-paths
+
+SHARED FOLDER
+  -every part of our application that is probably code reusable, we add them in the FOLDER
+  so in THE SHARED FOLDER we will have folders like global
+  -services folder
+    *everything related to mongodb will be added in this services folder
+
+***App Features***
+Authentication
+---signup
+---signin
+---signout
+---password reset
+---current user check
+Chat/Messaging
+---Private Chat
+---send images in Chat
+---add msg reactions
+---retrieve Messaging
+---mark msgs as read
+---delete msgs
+User
+---get single user
+---get multiple users with pagination
+---select random users
+---edit profile
+Post
+---CRUD + images
+Comments
+----CRUD comment to post
+Reactions
+---CRUD reactions to post
+Images
+---add img to post
+---upload profile img
+---upload profile img
+---upload bg img
+---retrieve imgs
+Followers/Unfollow/Block/Unblock
+---follow user
+---unfollow user
+---block user
+Notification
+---notification settings
+---retrieve+display notifications
+---delete+update notifications
+
+###ISSUE related with Mongodb
+sudo systemctl restart mongod
+sudo systemctl start mongod
+sudo systemctl status mongod
+
+
+
+
+###ISSUE #redis
+Error: connect ECONNREFUSED 127.0.0.1:6379
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 6379
+}
+Solution #redis
+sudo apt-get install redis-server
+sudo service redis-server status
+
+
+
+
+https://editorconfig.org
+ npm i -D eslint eslint-config-prettier prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser
+
+ prettier.io
+ eslintconfig
+ npx @eslint/migrate-config .eslintrc.json
+
+
+
+ npx run lint:check/fix
+ npm run prettier:check/fix
+
+
+ toptal.com/developers/gitignore -> node -> paste .gitignore
+
+
+ ssh-keygen
+ cd .ssh/
+ /.ssh$ ll
+
+ -rw-------  1 one one  444 Jan  7 23:44 id_ed25519
+-rw-r--r--  1 one one   89 Jan  7 23:44 id_ed25519.pub
+
+one@one:~/.ssh$ cat id_rsa.pub
+one@one:~/.ssh$ rm -rf /home/one/.ss
+
+ssh-keygen -t rsa -b 4096 -C "xxxxxx@proton.me"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub
+// add sshkey to github
+ssh -T git@github.com
+
+
+
+install prettier eslint editorconfig
+then create file .editorconfig then adjust or paste ready code
+
+npm i -D eslint eslint-config-prettier prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser
+
+then in root project add file .prettier
+then add {
+  "trailingComma": "none",
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "printWidth": 140
+} inside the file
+
+
+gitignore.io -> next type node ->then copy code ->paste it inside .gitignore file
