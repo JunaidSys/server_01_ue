@@ -4,13 +4,11 @@ import cloudinary from 'cloudinary';
 import Logger from 'bunyan';
 dotenv.config({});
 
-
-const logger:Logger=bunyan.createLogger({name:'API'});
-export class Config{
+const log: Logger = bunyan.createLogger({ name: 'API' });
+export class Config {
   public PORT_SER: string | undefined;
   public BASE_PATH_VERSION: string | undefined;
   public DATABASE_URL: string | undefined;
-  public JWT_TOKEN: string | undefined;
   public NODE_ENV: string | undefined;
   public SECRET_KEY_ONE: string | undefined;
   public SECRET_KEY_TWO: string | undefined;
@@ -24,14 +22,17 @@ export class Config{
   public SENDGRID_API_KEY: string | undefined;
   public SENDGRID_SENDER: string | undefined;
   public EC2_URL: string | undefined;
+  public REFRESH_TOKEN_PRIVATE_KEY: string | undefined;
+  public ACCESS_TOKEN_PRIVATE_KEY: string | undefined;
+  public JWT_SECRET_KEY: string | undefined;
+  public JWT_EXPIRES_IN: string | number | undefined;
+  public JWT_COOKIE_EXPIRES_IN: string | number | undefined;
   private readonly DEFAULT_DATABASE_URL = 'mongodb://0.0.0.0:27017/one';
 
-
-  constructor(){
+  constructor() {
     this.PORT_SER = process.env.PORT_SER || '';
     this.BASE_PATH_VERSION = process.env.PORT_SER || '';
     this.DATABASE_URL = process.env.DATABASE_URL || this.DEFAULT_DATABASE_URL;
-    this.JWT_TOKEN = process.env.JWT_TOKEN || '1234';
     this.NODE_ENV = process.env.NODE_ENV || '';
     this.SECRET_KEY_ONE = process.env.SECRET_KEY_ONE || '';
     this.SECRET_KEY_TWO = process.env.SECRET_KEY_TWO || '';
@@ -45,9 +46,14 @@ export class Config{
     this.SENDGRID_API_KEY = process.env.SENDGRID_API_KEY || '';
     this.SENDGRID_SENDER = process.env.SENDGRID_SENDER || '';
     this.EC2_URL = process.env.EC2_URL || '';
+    this.JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || '1234';
+    this.JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
+    this.JWT_COOKIE_EXPIRES_IN = process.env.JWT_COOKIE_EXPIRES_IN;
+    this.REFRESH_TOKEN_PRIVATE_KEY = process.env.REFRESH_TOKEN_PRIVATE_KEY || '';
+    this.ACCESS_TOKEN_PRIVATE_KEY = process.env.ACCESS_TOKEN_PRIVATE_KEY || '';
   }
 
-    public validateConfig(): void {
+  public validateConfig(): void {
     // for (const ele of Object.entries(this)){
     //   console.log(ele);
 
@@ -60,6 +66,7 @@ export class Config{
       //const [key,value]=x;
       //console.log(key);
       if (value === undefined) {
+        log.error(`Configuration ${key} is undefined.`);
         throw new Error(`Configuration ${key} is undefined.`);
       }
     }
@@ -76,14 +83,14 @@ export class Config{
       ]
     });
   }
-  
+
   public cloudinaryConfig(): void {
-     cloudinary.v2.config({
+    cloudinary.v2.config({
       cloud_name: this.CLOUD_NAME,
       api_key: this.CLOUD_API_KEY,
       api_secret: this.CLOUD_API_SECRET
     });
-}
+  }
 }
 
-export const config:Config=new Config();
+export const config: Config = new Config();

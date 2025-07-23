@@ -1,7 +1,8 @@
 
 import mongoose from 'mongoose';
-import { config } from './config';
+
 import Logger from 'bunyan';
+import { config } from '@root/config';
 const options = {
   //   useNewUrlParser: true,
   //   useUnifiedTopology: true,
@@ -20,14 +21,14 @@ export default () => {
 
   const connect_db = async () => {
     try {
-      const response = await mongoose.connect(`${config.DATABASE_URL}`);
+      const response = await mongoose.connect(`${config.DATABASE_URL}`,options);
       if (!response) return process.exit(1);
       log.info('Database connected........');
-      console.log(`DB connected ${config.DATABASE_URL}`);
-      console.log(`Redis is connected on port ${config.REDIS_HOST}`);
+      log.info(`DB connected ${config.DATABASE_URL}`);
+      log.info(`Redis is connected on port ${config.REDIS_HOST}`);
     } catch (error) {
-      //  console.log(error)
-      //  console.log(`Error Mongoose DB :${error}`);
+      //console.log(error)
+      //console.log(`Error Mongoose DB :${error}`);
       log.error(error);
       log.error(`Error Mongoose DB :${error}`);
       return process.exit(1);
@@ -39,7 +40,7 @@ export default () => {
   connect_db();
   mongoose.connection.on('disconnected', connect_db);
 
-    //method 1
+  //method 1
   // const connectDB = () => {
   //     mongoose.connect("mongodb://127.0.0.1:27017/appsm").then(() => {
   //         console.log("Successfully connected to database")
@@ -47,7 +48,6 @@ export default () => {
   //         console.log(error)
   //         console.log(`Error Mongoose DB :${error}`);
   //         return process.exit(1)
-
   //     })
   // }
   // connectDB()

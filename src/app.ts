@@ -1,8 +1,8 @@
 
 import express, { Express } from 'express';
-import { AppServer } from './setup_server';
-import connect_db from './setup_db';
-import { config } from './config';
+import { AppServer } from '@root/setup_server';
+import connect_db from '@root/setup_db';
+import { config } from '@root/config';
 
 class App {
     public initialize():void{

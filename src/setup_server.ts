@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Application, json, urlencoded, Response, Request, NextFunction } from 'express';
 import http from 'http';
 import cors from 'cors';
@@ -12,11 +13,17 @@ import Logger from 'bunyan';
 import api_stats from 'swagger-stats';
 import 'express-async-errors';
 import hpp from 'hpp';
+import { AppRoutes } from '@root/routes';
+import { config } from '@root/config';
+import { HttpRes } from '@global/helpers/http-res';
+import { CustomError, TErrorRes } from '@global/helpers/error/error-handler';
+
+
+
+
+
+
 //-------------------------------------------------------------------------
-import { config } from './config';
-import { AppRoutes } from './routes';
-import { HttpRes } from './shared/globals/helpers/http-res';
-import { CustomError, TErrorRes } from './shared/globals/helpers/error/error-handler';
 
 //__________________________________________________________________________
 
@@ -133,5 +140,6 @@ export class AppServer {
   private socketIO_connections(io: Server): void {
     //every socketio connection that we are going to create , the will be defined inside this fn
     //then what is next is call this method inside initiate_server method
+    log.info('socketIO_connections +');
   }
 }

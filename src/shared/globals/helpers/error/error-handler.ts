@@ -1,6 +1,3 @@
-import { Response } from 'express';
-import { HttpRes } from '../http-res';
-import { extend } from 'joi';
 import HTTP_STATUS from 'http-status-codes';
 export type TErrorRes = {
   message: string;
@@ -14,7 +11,6 @@ export type TError = Omit<TErrorRes, 'serializeErrors'>;
 abstract class CustomError extends Error {
   abstract statusCode: number;
   abstract status: string;
-
   constructor(message: string) {
     super(message);
   }
@@ -47,7 +43,6 @@ class BadRequestError extends CustomError {
 class NotFoundError extends CustomError {
   statusCode = HTTP_STATUS.NOT_FOUND;
   status = 'error';
-
   constructor(message: string) {
     super(message);
   }
@@ -56,7 +51,6 @@ class NotFoundError extends CustomError {
 class NotAuthorizedError extends CustomError {
   statusCode = HTTP_STATUS.UNAUTHORIZED;
   status = 'error';
-
   constructor(message: string) {
     super(message);
   }
@@ -65,7 +59,6 @@ class NotAuthorizedError extends CustomError {
 class FileTooLargeError extends CustomError {
   statusCode = HTTP_STATUS.REQUEST_TOO_LONG;
   status = 'error';
-
   constructor(message: string) {
     super(message);
   }
@@ -74,8 +67,7 @@ class FileTooLargeError extends CustomError {
 class ServerError extends CustomError {
   statusCode = HTTP_STATUS.SERVICE_UNAVAILABLE;
   status = 'error';
-
-  constructor(message: string) {
+ constructor(message: string) {
     super(message);
   }
 }

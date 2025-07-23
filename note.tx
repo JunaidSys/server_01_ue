@@ -57,7 +57,7 @@ sudo systemctl start mongod
 sudo systemctl status mongod
 
 
-
+www.youtube.com/shorts/P1i1uCCTg0o
 
 ###ISSUE #redis
 Error: connect ECONNREFUSED 127.0.0.1:6379
@@ -127,3 +127,8 @@ then add {
 
 
 gitignore.io -> next type node ->then copy code ->paste it inside .gitignore file
+
+--changing import
+  need to install npm i ttypescript typescript-transform-paths     -this module helps to build our app
+  when we run npm npm run build cmd. because once we make changes to the paths
+  it will not be easy for us to use TSC the normal ts cmd to build our app
